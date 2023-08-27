@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Layout</title>
+</head>
+<body>
+    <div th:replace="layouts/commonHeader :: header"></div>
+    <section layout:fragment="content">
+        <p>This is the content of the page.</p>
+    </section>
+    <div th:replace="layouts/commonFooter :: footer"></div>
+</body>
+</html>
