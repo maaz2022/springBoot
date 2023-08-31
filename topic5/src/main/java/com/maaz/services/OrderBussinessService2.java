@@ -3,13 +3,17 @@ package com.maaz.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import com.maaz.data.OrderDataAccessInterface;
 import com.maaz.model.Services;
 //@Primary
 public class OrderBussinessService2 implements OrderBussinessServiceInterface {
 
+	@Autowired
+	OrderDataAccessInterface ordersDAO;
 	@Override
 	public void test() {
 		// TODO Auto-generated method stub
@@ -19,15 +23,7 @@ public class OrderBussinessService2 implements OrderBussinessServiceInterface {
 	@Override
 	public List<Services> getOrders() {
 		
-		List<Services> orders=new ArrayList<Services>();
-		
-		orders.add(new Services(1,1,"samsung",1500,2));
-		orders.add(new Services(2,10,"huawei",150,3));
-		orders.add(new Services(3,12,"iphone",1506,6));
-		orders.add(new Services(4,15,"nokiar",125,8));
-		orders.add(new Services(5,5,"red-mi",15000,12));
-		orders.add(new Services(6,2,"oppo",150,23));
-		return orders;
+		return ordersDAO.getOrders();
 	}
 
 	@Override
@@ -39,6 +35,36 @@ public class OrderBussinessService2 implements OrderBussinessServiceInterface {
 	public void destroy() {
 		System.out.println("service 2 destroyed");
 		
+	}
+
+	@Override
+	public Services getByid(long id) {
+		
+		return ordersDAO.getByid(id);
+	}
+
+	@Override
+	public List<Services> searchOrders(String searchTerm) {
+		
+		return ordersDAO.searchOrders(searchTerm);
+	}
+
+	@Override
+	public long addOne(Services newOrder) {
+		// TODO Auto-generated method stub
+		return ordersDAO.addOne(newOrder);
+	}
+
+	@Override
+	public boolean deleteOne(long id) {
+		// TODO Auto-generated method stub
+		return ordersDAO.deleteOne(id);
+	}
+
+	@Override
+	public Services updateOne(long idToupdate, Services updateModel) {
+		// TODO Auto-generated method stub
+		return ordersDAO.updateOne(idToupdate, updateModel);
 	}
 	
 }
